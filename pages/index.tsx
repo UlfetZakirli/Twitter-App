@@ -14,8 +14,8 @@ const Home: NextPage = () => {
       </Head>
       <main className='bg-black min-h-screen flex max-w-[1500px] mx-auto'>
         <Sidebar />
-        <Feed />
-        <Widgets />
+        {/* <Feed /> */}
+        {/* <Widgets /> */}
 
         {/* Modal */}
       </main>
