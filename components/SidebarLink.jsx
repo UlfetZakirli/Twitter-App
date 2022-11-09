@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
 
-const SidebarLink = () => {
+const SidebarLink = ({ text, Icon, active }) => {
   return (
-    <div>SidebarLink</div>
-  )
-}
+    <div
+      className={`text-[#d9d9d9] flex items-center justify-center xl:justify-start text-xl space-x-3 hoverAnimation`}
+    >
+      <Icon className="h-7" />
+      <span className="hidden  xl:inline">{text}</span>
+    </div>
+  );
+};
 
-export default SidebarLink
+export default SidebarLink;

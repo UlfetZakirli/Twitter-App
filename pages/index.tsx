@@ -12,7 +12,7 @@ const Home: NextPage = () => {
         <title>Twitter</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className='bg-black min-h-screen flex max-w-[1500px] mx-auto'>
+      <main className='bg-black min-h-screen flex max-w-[1300px] mx-auto'>
         <Sidebar />
         <Feed />
         <Widgets />
