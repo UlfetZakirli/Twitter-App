@@ -37,7 +37,7 @@ const Sidebar = () => {
       </button>
       <div className="text-[#d9d9d9] flex items-center justify-center hoverAnimation xl:ml-auto xl:-mr-5 mt-auto">
         <img
-          src="https://i.pinimg.com/564x/b3/26/b5/b326b5f8d23cd1e0f18df4c9265416f7--facebook-icon-negative-feedback.jpg"
+          src="https://pbs.twimg.com/profile_images/1488548719062654976/u6qfBBkF_400x400.jpg"
           alt=""
           className="h-10 w-10 rounded-full xl:mr-2.5"
         />
