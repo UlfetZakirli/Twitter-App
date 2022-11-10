@@ -1,14 +1,30 @@
-import { CalendarIcon, ChartBarIcon, EmojiHappyIcon, PhotographIcon, XIcon } from "@heroicons/react/outline";
-import React, { useRef, useState } from "react";
-import Picker from 'emoji-picker-react';
+import {
+  CalendarIcon,
+  ChartBarIcon,
+  EmojiHappyIcon,
+  PhotographIcon,
+  XIcon,
+} from "@heroicons/react/outline";
+import React, { Fragment, useRef, useState } from "react";
+import Picker from "emoji-picker-react";
 
 const Input = () => {
   const [input, setInput] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const filePickerRef = useRef();
-  const [showEmojis, setShowEmojis] = useState(false)
+  const [showEmojis, setShowEmojis] = useState(false);
 
   const addImageToPost = () => {};
+
+ 
+  const addEmoji = (e) => {
+    let sym = e.unified.split("-");
+    let codesArray = [];
+    sym.forEach((el) => codesArray.push("0x" + el));
+    let emoji = String.fromCodePoint(...codesArray);
+    setInput(input + emoji);
+  };
+
   return (
     <div
       className={`border-b border-gray-700 p-3 flex space-x-3 overflow-y-scroll scrollbar-hide`}
@@ -55,33 +71,31 @@ const Input = () => {
                 onChange={addImageToPost}
               />
             </div>
-            <div className="icon rotate-90 " >
-                <ChartBarIcon className=" text-[#1d9bf0] h-[22px] " />
-              </div>
+            <div className="icon rotate-90 ">
+              <ChartBarIcon className=" text-[#1d9bf0] h-[22px] " />
+            </div>
 
-              <div className="icon" onClick={() => setShowEmojis(!showEmojis)}>
-                <EmojiHappyIcon className="text-[#1d9bf0] h-[22px]" />
-              </div>
+            <div className="icon" onClick={() => setShowEmojis(!showEmojis)}>
+              <EmojiHappyIcon className="text-[#1d9bf0] h-[22px]" />
+            </div>
 
-              <div className="icon">
-                <CalendarIcon className="text-[#1d9bf0] h-[22px]" />
+            <div className="icon">
+              <CalendarIcon className="text-[#1d9bf0] h-[22px]" />
+            </div>
+            {showEmojis && (
+              <div
+              // onSelect={addEmoji}
+                style={{
+                  position: "absolute",
+                  marginTop: "465px",
+                  marginLeft: -40,
+                  borderRadius: "20px",
+                }}
+            
+              >
+                <Picker onEmojiClick={addEmoji}  theme="dark" width={300} height={380} />
               </div>
-              {
-                showEmojis && (
-                  <div style={{
-                    position: "absolute",
-                    marginTop: "480px",
-                    marginLeft: -40,
-                    borderRadius: "20px",
-                  }}>
-                  <Picker
-               theme="dark"
-               width={300}
-               height={380}
-               />
-               </div>
-                )
-              }
+            )}
           </div>
         </div>
       </div>
