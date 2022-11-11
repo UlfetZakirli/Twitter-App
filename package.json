@@ -10,6 +10,7 @@
     "babel-runtime": "^6.26.0",
     "emoji-mart": "^5.3.0",
     "emoji-picker-react": "^4.4.5",
+    "firebase": "^9.14.0",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",

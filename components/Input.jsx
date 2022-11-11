@@ -12,11 +12,15 @@ const Input = () => {
   const [input, setInput] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const filePickerRef = useRef();
+  const [loading, setLoading] = useState(false);
   const [showEmojis, setShowEmojis] = useState(false);
 
+  const sendPost = () => {
+    if (loading) return;
+    setLoading(true);
+  };
   const addImageToPost = () => {};
 
- 
   const addEmoji = (e) => {
     let sym = e.unified.split("-");
     let codesArray = [];
@@ -84,24 +88,31 @@ const Input = () => {
             </div>
             {showEmojis && (
               <div
-              // onSelect={addEmoji}
+                // onSelect={addEmoji}
                 style={{
                   position: "absolute",
                   marginTop: "465px",
                   marginLeft: -40,
                   borderRadius: "20px",
                 }}
-            
               >
-                <Picker onEmojiClick={addEmoji}  theme="dark" width={300} height={380} />
+                <Picker
+                  onEmojiClick={addEmoji}
+                  theme="dark"
+                  width={300}
+                  height={380}
+                />
               </div>
             )}
           </div>
-          <button  className="bg-[#1d9bf0] text-white rounded-full px-4 py-1.5 font-bold 
+          <button
+            className="bg-[#1d9bf0] text-white rounded-full px-4 py-1.5 font-bold 
           shadow-md hover:bg-[#1a8cd8] disabled:hover:bg-[#1d9bf0]
            disabled:opacity-50 disabled:cursor-default"
-           disabled={!input.trim() && !selectedFile}
-           >Tweet</button>
+            disabled={!input.trim() && !selectedFile}
+          >
+            Tweet
+          </button>
         </div>
       </div>
     </div>
