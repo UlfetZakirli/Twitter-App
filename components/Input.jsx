@@ -16,6 +16,7 @@ import {
 } from "@firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "@firebase/storage";
 import Picker from "emoji-picker-react";
+import { useSession } from 'next-auth/react';
 
 const Input = () => {
   const [input, setInput] = useState("");
@@ -23,6 +24,8 @@ const Input = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const filePickerRef = useRef();
   const [showEmojis, setShowEmojis] = useState(false);
+  const { data: session } = useSession();
+
 
 
   const sendPost = async () => {
@@ -30,10 +33,10 @@ const Input = () => {
     setLoading(true);
 
     const docRef = await addDoc(collection(db, "posts"), {
-      // id: session.user.uid,
-      // username: session.user.name,
-      // userImg: session.user.image,
-      // tag: session.user.tag,
+      id: session.user.uid,
+      username: session.user.name,
+      userImg: session.user.image,
+      tag: session.user.tag,
       text: input,
       timestamp: serverTimestamp(),
     });
@@ -81,8 +84,8 @@ const Input = () => {
         }`}
     >
       <img
-        src="https://pbs.twimg.com/profile_images/1488548719062654976/u6qfBBkF_400x400.jpg"
-        alt=""
+        src={session.user.image}
+        alt={session.user.name}
         className="h-11 w-11 rounded-full cursor-pointer"
       />
       <div className="w-full divide-y divide-gray-700">
