@@ -1,7 +1,33 @@
-import { DotsHorizontalIcon } from "@heroicons/react/outline";
-import React from "react";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+  setDoc,
+} from "@firebase/firestore";
+import {
+  ChartBarIcon,
+  ChatIcon,
+  DotsHorizontalIcon,
+  HeartIcon,
+  ShareIcon,
+  SwitchHorizontalIcon,
+  TrashIcon,
+} from "@heroicons/react/outline";
+import {
+  HeartIcon as HeartIconFilled,
+  ChatIcon as ChatIconFilled,
+} from "@heroicons/react/solid";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+
+import { db } from "../firebase";
 
 const Post = ({ id, post, postPage }) => {
+  const { data: session } = useSession();
   return (
     <div className="p-3 flex cursor-pointer border-b border-gray-700">
       {!postPage && (
@@ -28,7 +54,7 @@ const Post = ({ id, post, postPage }) => {
             </div>{" "}
             ·{" "}
             <span className="hover:underline text-sm sm:text-[15px]">
-            {/* <Moment fromNow>{post?.timestamp?.toDate()}</Moment> */}
+              {/* <Moment fromNow>{post?.timestamp?.toDate()}</Moment> */}
             </span>
             {!postPage && (
               <p className="text-[#d9d9d9] text-[15px] sm:text-base mt-0.5">
@@ -37,10 +63,54 @@ const Post = ({ id, post, postPage }) => {
             )}
           </div>
           <div className="icon group flex-shrink-0 ml-auto">
-            <DotsHorizontalIcon className="h-5 text-[#6e767d] group-hover:text-[#1d9bf0]"/>
-
+            <DotsHorizontalIcon className="h-5 text-[#6e767d] group-hover:text-[#1d9bf0]" />
           </div>
         </div>
+        {
+          postPage && (
+            <p className="text-[#d9d9d9] text-[15px] sm:text-base mt-0.5">
+              {post?.text}
+            </p>
+          )
+        }
+        <img 
+        src={post?.image} 
+        className="rounded-2xl max-h-[700px] object-cover mr-2"
+         alt=""
+          />
+          <div className={`text-[#6e767d] flex justify-between w-10/12 ${postPage && 'mx-auto'}`}>
+        
+
+          {session.user.uid === post?.id ? (
+            <div
+              className="flex items-center space-x-1 group"
+              onClick={(e) => {
+                e.stopPropagation();
+                deleteDoc(doc(db, "posts", id));
+                router.push("/");
+              }}
+            >
+              <div className="icon group-hover:bg-red-600/10">
+                <TrashIcon className="h-5 group-hover:text-red-600" />
+              </div>
+            </div>
+          ) : (
+            <div className="flex items-center space-x-1 group">
+              <div className="icon group-hover:bg-green-500/10">
+                <SwitchHorizontalIcon className="h-5 group-hover:text-green-500" />
+              </div>
+            </div>
+          )}
+
+       
+
+          <div className="icon group">
+            <ShareIcon className="h-5 group-hover:text-[#1d9bf0]" />
+          </div>
+          <div className="icon group">
+            <ChartBarIcon className="h-5 group-hover:text-[#1d9bf0]" />
+          </div>
+          </div>
       </div>
     </div>
   );
