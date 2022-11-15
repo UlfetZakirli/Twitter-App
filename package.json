@@ -20,6 +20,7 @@
     "react-firebase-hooks": "^5.1.0",
     "react-moment": "^1.1.2",
     "recoil": "^0.7.6",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "v1": "^1.0.0"
   },
   "devDependencies": {

@@ -17,6 +17,7 @@ import {
 import { getDownloadURL, ref, uploadString } from "@firebase/storage";
 import Picker from "emoji-picker-react";
 import { useSession } from 'next-auth/react';
+import { useRecoilState } from "recoil";
 
 const Input = () => {
   const [input, setInput] = useState("");
@@ -134,7 +135,7 @@ const Input = () => {
                 <ChartBarIcon className=" text-[#1d9bf0] h-[22px] " />
               </div>
 
-              <div className="icon" onClick={() => setShowEmojis(!showEmojis)}>
+              <div className="icon scrollbar-hide" onClick={() => setShowEmojis(!showEmojis)}>
                 <EmojiHappyIcon className="text-[#1d9bf0] h-[22px]" />
               </div>
 
