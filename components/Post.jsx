@@ -31,42 +31,43 @@ import { db } from "../firebase";
 const Post = ({ id, post, postPage }) => {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState(modalState);
-  const [comments, setComments] = useState([])
-  const [postId, setPostId] = useState(postIdState)
-  const [liked, setLiked] = useState(false)
-  const [likes, setLikes] = useState([])
-  const router=useRouter()
+  const [comments, setComments] = useState([]);
+  const [postId, setPostId] = useState(postIdState);
+  const [liked, setLiked] = useState(false);
+  const [likes, setLikes] = useState([]);
+  const router = useRouter();
 
   useEffect(
-    ()=>
-    onSnapshot(collection(db,"posts",id,"likes"),(snapshot)=>
-    setLikes(snapshot.docs)
-    ),
-    [db,id]
-  );
-
-  useEffect(
-    ()=>
-    setLiked(
-      likes.findIndex((like)=>like.id===session?.user?.uid) !==-1
+    () =>
+      onSnapshot(collection(db, "posts", id, "likes"), (snapshot) =>
+        setLikes(snapshot.docs)
       ),
-  
-  [likes]
+    [db, id]
   );
 
-  const likePost=async()=>{
-    if(liked){
-      await   deleteDoc(doc(db,"posts",id,"likes",session.user.uid));
-    }else{
-      await setDoc(doc(db,"posts",id,"likes",session.user.uid),{
-        username:session.user.name
+  useEffect(
+    () =>
+      setLiked(
+        likes.findIndex((like) => like.id === session?.user?.uid) !== -1
+      ),
+
+    [likes]
+  );
+
+  const likePost = async () => {
+    if (liked) {
+      await deleteDoc(doc(db, "posts", id, "likes", session.user.uid));
+    } else {
+      await setDoc(doc(db, "posts", id, "likes", session.user.uid), {
+        username: session.user.name,
       });
     }
-  }
+  };
 
   return (
-    <div className="p-3 flex cursor-pointer border-b border-gray-700"
-    onClick={()=>router.push(`/${id}`)}
+    <div
+      className="p-3 flex cursor-pointer border-b border-gray-700"
+      onClick={() => router.push(`/${id}`)}
     >
       {!postPage && (
         <img
@@ -86,9 +87,19 @@ const Post = ({ id, post, postPage }) => {
           )}
           <div className="text-[#6e767d]">
             <div className="inline-block group">
-              <h4 className={`font-bold text-[15px] sm:text-base
-               text-[#d9d9d9] group-hover:underline ${!postPage && 'inline-block'}`}>{post?.username}</h4>
-              <span className={`text-sm sm:text-[15px] ${!postPage && "ml-1.5"}`}>@{post?.tag}</span>
+              <h4
+                className={`font-bold text-[15px] sm:text-base
+               text-[#d9d9d9] group-hover:underline ${
+                 !postPage && "inline-block"
+               }`}
+              >
+                {post?.username}
+              </h4>
+              <span
+                className={`text-sm sm:text-[15px] ${!postPage && "ml-1.5"}`}
+              >
+                @{post?.tag}
+              </span>
             </div>{" "}
             ·{" "}
             <span className="hover:underline text-sm sm:text-[15px]">
@@ -104,19 +115,21 @@ const Post = ({ id, post, postPage }) => {
             <DotsHorizontalIcon className="h-5 text-[#6e767d] group-hover:text-[#1d9bf0]" />
           </div>
         </div>
-        {
-          postPage && (
-            <p className="text-[#d9d9d9] text-[15px] sm:text-base mt-0.5">
-              {post?.text}
-            </p>
-          )
-        }
-        <img 
-        src={post?.image} 
-        className="rounded-2xl max-h-[700px] object-cover mr-2"
-         alt=""
-          />
-          <div className={`text-[#6e767d] flex justify-between w-10/12 ${postPage && 'mx-auto'}`}>
+        {postPage && (
+          <p className="text-[#d9d9d9] text-[15px] sm:text-base mt-0.5">
+            {post?.text}
+          </p>
+        )}
+        <img
+          src={post?.image}
+          className="rounded-2xl max-h-[700px] object-cover mr-2"
+          alt=""
+        />
+        <div
+          className={`text-[#6e767d] flex justify-between w-10/12 ${
+            postPage && "mx-auto"
+          }`}
+        >
           <div
             className="flex items-center space-x-1 group"
             onClick={(e) => {
@@ -187,7 +200,7 @@ const Post = ({ id, post, postPage }) => {
           <div className="icon group">
             <ChartBarIcon className="h-5 group-hover:text-[#1d9bf0]" />
           </div>
-          </div>
+        </div>
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ function Login({ providers }) {
                 width={150}
                 height={150}
                 objectFit="contain"
-                alt="Login"
+                alt="Login" 
             />
 
             <div>
