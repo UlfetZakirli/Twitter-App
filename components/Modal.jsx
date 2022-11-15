@@ -26,20 +26,20 @@ function Modal() {
   const [isOpen, setIsOpen] = useRecoilState(modalState);
   const [postId, setPostId] = useRecoilState(postIdState);
   const [post, setPost] = useState();
-  const [ t, setComment] = useState("");
+  const [ comment, setComment] = useState("");
   const router = useRouter();
-
-  // useEffect(
-  //   () =>
-  //     onSnapshot(doc(db, "posts", postId), (snapshot) => {
-  //       setPost(snapshot.data());
-  //     }),
-  //   [db]
-  // );
-
+  useEffect(
+    () =>
+    onSnapshot(doc(db, "posts", postId), (snapshot) => {
+      setPost(snapshot.data());
+    }),
+    [db]
+    );
+    
   const sendComment = async (e) => {
     e.preventDefault();
 
+    
     await addDoc(collection(db, "posts", postId, "comments"), {
       comment: comment,
       username: session.user.name,
@@ -47,10 +47,10 @@ function Modal() {
       userImg: session.user.image,
       timestamp: serverTimestamp(),
     });
-
+    
     setIsOpen(false);
     setComment("");
-
+    
     router.push(`/${postId}`);
   };
 
@@ -93,17 +93,17 @@ function Modal() {
                   <div className="text-[#6e767d] flex gap-x-3 relative">
                     <span className="w-0.5 h-full z-[-1] absolute left-5 top-11 bg-gray-600" />
                     <img
-                      src={post?.userImg}
+                      src="https://lh3.googleusercontent.com/a/ALm5wu2S0rTHiMGDA-X30jtKw8DPjYY8puT7eS1smAF6=s96-c"
                       alt=""
                       className="h-11 w-11 rounded-full"
                     />
                     <div>
                       <div className="inline-block group">
                         <h4 className="font-bold text-[#d9d9d9] inline-block text-[15px] sm:text-base">
-                          {post?.username}
+                          {/* {post?.username} */}
                         </h4>
                         <span className="ml-1.5 text-sm sm:text-[15px]">
-                          @{post?.tag}{" "}
+                          @{session.user?.tag}{" "}
                         </span>
                       </div>{" "}
                       ·{" "}
@@ -111,7 +111,7 @@ function Modal() {
                         <Moment fromNow>{post?.timestamp?.toDate()}</Moment>
                       </span>
                       <p className="text-[#d9d9d9] text-[15px] sm:text-base">
-                        {post?.text}
+                        {session.user?.name}
                       </p>
                     </div>
                   </div>
