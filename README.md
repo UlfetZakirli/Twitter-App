@@ -17,7 +17,7 @@ This example shows how to use [Tailwind CSS](https://tailwindcss.com/) with Next
 
 Deployed project using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example)
 
-[![Deployed Twitter App ](https://twitter-5m57e37lh-ulfetzakirli.vercel.app/button)](https://twitter-5m57e37lh-ulfetzakirli.vercel.app/)
+[![Deploy with Vercel](https://vercel.com/button)](https://twitter-5m57e37lh-ulfetzakirli.vercel.app/)
 
 ## How to use
 
