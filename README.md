@@ -25,7 +25,7 @@ Deployed project using [Vercel](https://vercel.com?utm_source=github&utm_medium=
 [![Deploy with Vercel](https://vercel.com/button)](https://twitter-5m57e37lh-ulfetzakirli.vercel.app/)
 
 
-*** Twitter Clone ***
+## ***Twitter Clone***
 
 ![twitter-app1](https://user-images.githubusercontent.com/88549805/205442386-299b5de3-ee4a-45cc-ba47-4c6675eed34c.jpg)
 
