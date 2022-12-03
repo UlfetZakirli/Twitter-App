@@ -10,7 +10,7 @@
 * [TailwindCSS](https://tailwindcss.com/)-for styling,
 * [Recoil.js](https://recoiljs.org/)-state management library,
 * [Firebase](https://firebase.google.com/),
-* [Google Cloud Platform Console - Google Cloud Platform (GCP)](https://cloud.google.com/cloud-console/?utm_source=google&utm_medium=cpc&utm_campaign=emea-emea-all-   en-dr-bkws-all-all-trial-e-gcp-1011340&utm_content=text-ad-none-any-DEV_c-CRE_574627824862-ADGP_Hybrid%20%7C%20BKWS%20-          %20EXA%20%7C%20Txt%20~%20Management%20Tools%20~%20Cloud%20Console%23v2-KWID_43700053286075712-aud-606988877734%3Akwd-55675752867-userloc_1000998&utm_term=KW_google%20cloud%20console-NET_g-PLAC_&gclid=Cj0KCQiAyMKbBhD1ARIsANs7rEF1FBjuaix4cSC9-3olNInBukJ6N3zelDEUgisXysIynLmflxmh3pEaAqnhEALw_wcB&gclsrc=aw.ds),
+* [Google Cloud Platform Console - Google Cloud Platform (GCP)](https://cloud.google.com/cloud-console/?utm_source=google)
 * [Emoji Picker](https://www.npmjs.com/package/emoji-picker-react) OR [Emoji Mart](https://github.com/missive/emoji-mart),
 * [Moment.js](https://momentjs.com/),
 * [Vercel](https://vercel.com/)-deployment
@@ -23,6 +23,15 @@
 Deployed project using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example)
 
 [![Deploy with Vercel](https://vercel.com/button)](https://twitter-5m57e37lh-ulfetzakirli.vercel.app/)
+
+
+*** Twitter Clone ***
+
+![twitter-app1](https://user-images.githubusercontent.com/88549805/205442386-299b5de3-ee4a-45cc-ba47-4c6675eed34c.jpg)
+
+
+![twitter-app2](https://user-images.githubusercontent.com/88549805/205442469-21636556-e3b8-4258-8d5c-4369ea1803d3.jpg)
+
 
 ## How to use
 
